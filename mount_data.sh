@@ -19,4 +19,4 @@ echo
 # Start the mount process
 echo "🚀 Starting mount service..."
 echo "📌 Use Ctrl+C to stop the mount"
-minikube mount --write "${LOCAL_DIR}:${REMOTE_DIR}"
+minikube mount "${LOCAL_DIR}:${REMOTE_DIR}"
