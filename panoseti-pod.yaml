@@ -9,6 +9,9 @@ spec:
   - name: ubuntu
     image: ubuntu:24.04
     command: ["/bin/bash", "-c", "sleep infinity"]
+    volumeMounts:
+      - mountPath: /home/ubuntu
+        name: panoseti-volume
 
   - name: redis
     image: redis:7
@@ -29,3 +32,8 @@ spec:
     image: httpd:2.4
     ports:
     - containerPort: 80
+  volumes:
+    - name: panoseti-volume
+      hostPath:
+        path: /mnt/data       
+        type: Directory
