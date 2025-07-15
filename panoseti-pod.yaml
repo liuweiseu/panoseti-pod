@@ -1,16 +1,21 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: panoseti-service-pod
+  name: panoseti-pod
   labels:
     app: panoseti-service
 spec:
+  hostname: headnode
   containers:
   - name: ubuntu
-    image: ubuntu:24.04
+    image: ghcr.io/liuweiseu/ubuntu-aarch64:24.04-v1.0
     command: ["/bin/bash", "-c", "sleep infinity"]
+    workingDir: /home/panoseti
+    securityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
     volumeMounts:
-      - mountPath: /home/ubuntu
+      - mountPath: /home/panoseti/panoseti
         name: panoseti-volume
 
   - name: redis
