@@ -2,43 +2,43 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: panoseti-pod
-  labels:
-    app: panoseti-service
 spec:
   hostname: headnode
   containers:
-  - name: ubuntu
-    image: ghcr.io/liuweiseu/ubuntu-aarch64:24.04-v1.0
-    command: ["/bin/bash", "-c", "sleep infinity"]
-    workingDir: /home/panoseti
-    securityContext:
-      runAsUser: 1000
-      runAsGroup: 1000
-    volumeMounts:
-      - mountPath: /home/panoseti/panoseti
-        name: panoseti-volume
+    - name: ubuntu
+      image: ghcr.io/liuweiseu/ubuntu-aarch64:24.04-v1.0
+      command: [ "sleep", "infinity" ]
+      workingDir: /home/panoseti
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+      volumeMounts:
+        - mountPath: /home/panoseti/panoseti
+          name: panoseti-vol
 
-  - name: redis
-    image: redis:7
-    ports:
-    - containerPort: 6379
+    - name: redis
+      image: docker.io/library/redis:7
 
-  - name: influxdb
-    image: influxdb:2.7
-    ports:
-    - containerPort: 8086
+    - name: influxdb
+      image: docker.io/library/influxdb:2.7
+      ports:
+        - containerPort: 8086
+          hostPort: 8086
 
-  - name: grafana
-    image: grafana/grafana:latest
-    ports:
-    - containerPort: 3000
+    - name: grafana
+      image: docker.io/grafana/grafana:latest
+      ports:
+        - containerPort: 3000
+          hostPort: 3000
 
-  - name: apache
-    image: httpd:2.4
-    ports:
-    - containerPort: 80
+    - name: apache
+      image: docker.io/library/httpd:latest
+      ports:
+        - containerPort: 80
+          hostPort: 8080
+
   volumes:
-    - name: panoseti-volume
+    - name: panoseti-vol
       hostPath:
-        path: /mnt/data       
+        path: /home/wei/Projects/panoseti
         type: Directory
