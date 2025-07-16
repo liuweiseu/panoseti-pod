@@ -1,3 +1,3 @@
 #! /bin/bash
 #
-kubectl exec -it panoseti-pod -c ubuntu -- /bin/bash
+sudo podman exec -it panoseti-pod-ubuntu /bin/bash
