@@ -40,7 +40,7 @@ spec:
           name: panoseti-grafana-datasources 
 
     - name: apache2
-      image: docker.io/ubuntu/apache2:2.4-20.04_beta
+      image: docker.io/library/php:7.4-apache
       ports:
         - containerPort: 80
           hostPort: 8080
