@@ -1,3 +1,3 @@
 #! /bin/bash
 #
-sudo podman play kube panoseti-pod.yaml
+podman play kube panoseti-pod.yaml

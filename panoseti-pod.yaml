@@ -6,21 +6,24 @@ spec:
   hostname: headnode
   containers:
     - name: ubuntu
-      image: ghcr.io/liuweiseu/ubuntu-aarch64:24.04-v1.0
+      image: ghcr.io/liuweiseu/ubuntu-x86:24.04-v1.0
       command: [ "sleep", "infinity" ]
       workingDir: /home/panoseti
       securityContext:
         runAsUser: 1000
         runAsGroup: 1000
+      ports:
+        - containerPort: 22
+          hostPort: 5922
       volumeMounts:
         - mountPath: /home/panoseti/panoseti
-          name: panoseti-vol
+          name: panoseti-control
 
     - name: redis
-      image: docker.io/library/redis:7
+      image: docker.io/library/redis:7.4.1
 
     - name: influxdb
-      image: docker.io/library/influxdb:2.7
+      image: docker.io/library/influxdb:1.8.10
       ports:
         - containerPort: 8086
           hostPort: 8086
@@ -30,6 +33,11 @@ spec:
       ports:
         - containerPort: 3000
           hostPort: 3000
+      volumeMounts:
+        - mountPath: /etc/grafana/provisioning/dashboards
+          name: panoseti-grafana-dashboards
+        - mountPath: /etc/grafana/provisioning/datasources
+          name: panoseti-grafana-datasources 
 
     - name: apache
       image: docker.io/library/httpd:latest
@@ -38,7 +46,15 @@ spec:
           hostPort: 8080
 
   volumes:
-    - name: panoseti-vol
+    - name: panoseti-control
       hostPath:
         path: /home/wei/Projects/panoseti
+        type: Directory
+    - name: panoseti-grafana-dashboards
+      hostPath:
+        path: /home/wei/Projects/panoseti-pod/data/grafana/grafana_provisioning/dashboards
+        type: Directory
+    - name: panoseti-grafana-datasources
+      hostPath:
+        path: /home/wei/Projects/panoseti-pod/data/grafana/grafana_provisioning/datasources
         type: Directory
