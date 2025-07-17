@@ -1,0 +1,7 @@
+[submodule "data/apache2/web"]
+	path = data/apache2/web
+	url = https://github.com/liuweiseu/panoseti_web.git
+	branch = podman
+[submodule "data/grafana"]
+	path = data/grafana
+	url = https://github.com/liuweiseu/panoseti-grafana.git

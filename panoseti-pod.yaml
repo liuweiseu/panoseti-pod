@@ -6,7 +6,7 @@ spec:
   hostname: headnode
   containers:
     - name: ubuntu
-      image: ghcr.io/liuweiseu/ubuntu-x86:24.04-v1.0
+      image: ghcr.io/liuweiseu/ubuntu-aarch64:24.04-v1.1
       command: [ "sleep", "infinity" ]
       workingDir: /home/panoseti
       securityContext:
@@ -39,13 +39,30 @@ spec:
         - mountPath: /etc/grafana/provisioning/datasources
           name: panoseti-grafana-datasources 
 
-    - name: apache
-      image: docker.io/library/httpd:latest
+    - name: apache2
+      image: docker.io/ubuntu/apache2:2.4-20.04_beta
       ports:
         - containerPort: 80
           hostPort: 8080
+      volumeMounts:
+        - mountPath: /etc/apache2
+          name: panoseti-apache2-config
+        - mountPath: /var/www/html
+          name: panoseti-apache2-web
+        - mountPath: /mnt/headnode
+          name: panoseti-headnode-data
+        - mountPath: /mnt/daq
+          name: panoseti-daq-data
 
   volumes:
+    - name: panoseti-headnode-data
+      hostPath:
+        path: /home/wei/data
+        type: Directory
+    - name: panoseti-daq-data
+      hostPath:
+        path: /mnt/data
+        type: Directory
     - name: panoseti-control
       hostPath:
         path: /home/wei/Projects/panoseti
@@ -58,3 +75,11 @@ spec:
       hostPath:
         path: /home/wei/Projects/panoseti-pod/data/grafana/grafana_provisioning/datasources
         type: Directory
+    - name: panoseti-apache2-config
+      hostPath:
+        path: /home/wei/Projects/panoseti-pod/data/apache2/config
+        type: Directory
+    - name: panoseti-apache2-web
+      hostPath:
+        path: /home/wei/Projects/panoseti-pod/data/apache2/web
+        type: Directory 
