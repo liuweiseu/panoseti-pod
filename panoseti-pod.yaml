@@ -61,11 +61,11 @@ spec:
   volumes:
     - name: panoseti-headnode-data
       hostPath:
-        path: /home/wei/data
+        path: /home/wei/Projects/panoseti-pod/data/headnode
         type: Directory
     - name: panoseti-daq-data
       hostPath:
-        path: /mnt/data
+        path: /home/wei/Projects/panoseti-pod/data/daq
         type: Directory
     - name: panoseti-control
       hostPath:
@@ -73,17 +73,17 @@ spec:
         type: Directory
     - name: panoseti-grafana-dashboards
       hostPath:
-        path: /home/wei/Projects/panoseti-pod/data/grafana/grafana_provisioning/dashboards
+        path: /home/wei/Projects/panoseti-pod/website/grafana/grafana_provisioning/dashboards
         type: Directory
     - name: panoseti-grafana-datasources
       hostPath:
-        path: /home/wei/Projects/panoseti-pod/data/grafana/grafana_provisioning/datasources
+        path: /home/wei/Projects/panoseti-pod/website/grafana/grafana_provisioning/datasources
         type: Directory
     - name: panoseti-apache2-config
       hostPath:
-        path: /home/wei/Projects/panoseti-pod/data/apache2/config
+        path: /home/wei/Projects/panoseti-pod/website/apache2/config
         type: Directory
     - name: panoseti-apache2-web
       hostPath:
-        path: /home/wei/Projects/panoseti-pod/data/apache2/web
+        path: /home/wei/Projects/panoseti-pod/website/apache2/web
         type: Directory 
