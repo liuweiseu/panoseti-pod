@@ -6,7 +6,7 @@ spec:
   hostname: headnode
   containers:
     - name: ubuntu
-      image: ghcr.io/liuweiseu/ubuntu-x86:24.04-v1.0
+      image: ghcr.io/liuweiseu/ubuntu-x86:24.04-v1.1
       command: [ "sleep", "infinity" ]
       workingDir: /home/panoseti
       securityContext:
