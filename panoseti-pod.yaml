@@ -22,6 +22,8 @@ spec:
       volumeMounts:
         - mountPath: /home/panoseti/panoseti
           name: panoseti-control
+        - mountPath: /home/panoseti/headnode
+          name: panoseti-headnode-data
 
     - name: redis
       image: docker.io/library/redis:7.4.1
@@ -69,7 +71,7 @@ spec:
         type: Directory
     - name: panoseti-control
       hostPath:
-        path: /home/wei/Projects/panoseti
+        path: /home/wei/Projects/panoseti-pod/panoseti-control
         type: Directory
     - name: panoseti-grafana-dashboards
       hostPath:

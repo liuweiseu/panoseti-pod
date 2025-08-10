@@ -1,6 +1,10 @@
 [submodule "website/grafana"]
 	path = website/grafana
-	url = https://github.com/liuweiseu/panoseti-grafana.git
+	url = https://github.com/panoseti/panoseti_grafana.git
 [submodule "website/apache2/web"]
 	path = website/apache2/web
 	url = https://github.com/panoseti/panoseti_web.git
+[submodule "panoseti-control"]
+	path = panoseti-control
+	url = https://github.com/panoseti/panoseti.git
+	branch = container
