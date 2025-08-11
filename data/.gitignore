@@ -1,0 +1,11 @@
+*
+
+!.gitignore
+!daq/
+!headnode/data/
+
+daq/*
+headnode/data/*
+
+!daq/.gitkeep
+!headnode/data/.gitkeep
