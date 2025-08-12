@@ -7,6 +7,11 @@ case "$1" in
     echo "Done."
     ;;
   --restart)
+    echo "Checking Pod status..."
+    podman pod ps
+    echo "Done."
+    ;;
+  --restart)
     echo "Restarting PanoSETI Pod..."
     podman pod restart panoseti-pod
     echo "Done."
@@ -23,7 +28,7 @@ case "$1" in
     echo "Done."
     ;;
   *)
-    echo "Usage: $0 {--setup|--restart|--stop|--del}"
+    echo "Usage: $0 {--setup|--status|--restart|--stop|--del}"
     exit 1
     ;;
 esac
