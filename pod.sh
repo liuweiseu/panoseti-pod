@@ -6,7 +6,7 @@ case "$1" in
     podman play kube panoseti-pod.yaml
     echo "Done."
     ;;
-  --restart)
+  --status)
     echo "Checking Pod status..."
     podman pod ps
     echo "Done."
