@@ -1,0 +1,91 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: panoseti-pod
+spec:
+  hostname: headnode
+  containers:
+    - name: ubuntu
+      image: ghcr.io/liuweiseu/ubuntu-x86:24.04-v1.0
+      command: [ "sleep", "infinity" ]
+      workingDir: /home/panoseti
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        capabilities:
+          add: ["NET_RAW"]
+      ports:
+        - containerPort: 22
+          hostPort: 5922
+        - containerPort: 60000
+          hostPort: 60000
+      volumeMounts:
+        - mountPath: /home/panoseti/panoseti
+          name: panoseti-control
+        - mountPath: /home/panoseti/headnode
+          name: panoseti-headnode-data
+
+    - name: redis
+      image: docker.io/library/redis:7.4.1
+
+    - name: influxdb
+      image: docker.io/library/influxdb:1.8.10
+      ports:
+        - containerPort: 8086
+          hostPort: 8086
+
+    - name: grafana
+      image: docker.io/grafana/grafana:latest
+      ports:
+        - containerPort: 3000
+          hostPort: 3000
+      volumeMounts:
+        - mountPath: /etc/grafana/provisioning/dashboards
+          name: panoseti-grafana-dashboards
+        - mountPath: /etc/grafana/provisioning/datasources
+          name: panoseti-grafana-datasources 
+
+    - name: apache2
+      image: docker.io/library/php:7.4-apache
+      ports:
+        - containerPort: 80
+          hostPort: 8080
+      volumeMounts:
+        - mountPath: /etc/apache2
+          name: panoseti-apache2-config
+        - mountPath: /var/www/html
+          name: panoseti-apache2-web
+        - mountPath: /mnt/headnode
+          name: panoseti-headnode-data
+        - mountPath: /mnt/daq
+          name: panoseti-daq-data
+
+  volumes:
+    - name: panoseti-headnode-data
+      hostPath:
+        path: /home/wei/Projects/panoseti-pod/data/headnode
+        type: Directory
+    - name: panoseti-daq-data
+      hostPath:
+        path: /home/wei/Projects/panoseti-pod/data/daq
+        type: Directory
+    - name: panoseti-control
+      hostPath:
+        path: /home/wei/Projects/panoseti-pod/panoseti-control
+        type: Directory
+    - name: panoseti-grafana-dashboards
+      hostPath:
+        path: /home/wei/Projects/panoseti-pod/website/grafana/grafana_provisioning/dashboards
+        type: Directory
+    - name: panoseti-grafana-datasources
+      hostPath:
+        path: /home/wei/Projects/panoseti-pod/website/grafana/grafana_provisioning/datasources
+        type: Directory
+    - name: panoseti-apache2-config
+      hostPath:
+        path: /home/wei/Projects/panoseti-pod/website/apache2/config
+        type: Directory
+    - name: panoseti-apache2-web
+      hostPath:
+        path: /home/wei/Projects/panoseti-pod/website/apache2/web
+        type: Directory 
