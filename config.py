@@ -10,7 +10,7 @@ if __name__ == "__main__":
     # Step 0: parse the arguments
     parser = ArgumentParser(prog=os.path.basename(__file__))
     parser.add_argument('--sw-path', dest='sw_path', type=str, 
-                        default='/home/wei',
+                        default=None,
                         help='The path of the PanoSETI control software.')
     parser.add_argument('--clone-sw', dest='clone_sw', action='store_true',
                         default=False,
@@ -31,8 +31,12 @@ if __name__ == "__main__":
         else:
             cmd = 'git clone -b container --depth=1 https://github.com/panoseti/panoseti.git'
             os.system(cmd)
-    else:
+    elif opts.sw_path != None:
         sw_path = opts.sw_path
+    else:
+        print('Please specify the panoseti software path with `--sw-path`,')
+        print('or use `--clone-sw` to clone the repo automatically.')
+        return
     if opts.arch == 'x86':
         image = X86_IMAGE
     elif opts.arch == 'aarch64':
