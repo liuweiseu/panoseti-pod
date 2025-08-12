@@ -2,7 +2,10 @@
 This is the container for the PanoSETI control software.
 
 ## Set up
-1. install [miniconda](https://www.anaconda.com/docs/getting-started/miniconda/install#linux-terminal-installer)(optional, but recommended)
+1. install [miniconda](https://www.anaconda.com/docs/getting-started/miniconda/install#linux-terminal-installer)(optional, but recommended) and necessary python packages
+    ```
+    pip install -r requirements.txt
+    ```
 2. install [HASHPIPE](https://casper.astro.berkeley.edu/wiki/HASHPIPE) on the host computer
     ```
     git clone https://github.com/david-macmahon/hashpipe.git
@@ -17,19 +20,23 @@ This is the container for the PanoSETI control software.
     ```
     sudo apt install podman
     ```
-4. install necessary python packages
-    ```
-    pip install psutil
-    pip install netifaces
-    ```
-5. clone the `panoseti-pod` repo and the `panoseti` repo
+4. clone the `panoseti-pod` repo and the `panoseti` repo
     ```
     git clone -b podman https://github.com/panoseti/panoseti-pod.git
     ```
+5. run `config.py` to generate the `panoseti-pod.yaml`
     ```
-    git clone -b container --depth==1 https://github.com/panoseti/panoseti.git panoseti-control
+    python3 config.py --clone_sw
     ```
-6. modify the config file in the `panoseti-control` directory
+6. create pod
+    ```
+    ./setup.sh
+    ```
+7. use the terminal
+    ```
+    ./terminal.sh
+    ```
+8. modify the config file in the `panoseti-control` directory
     ```
     cd panoseti-control/control/configs
     cp container/daq_config.json daq_config.json
