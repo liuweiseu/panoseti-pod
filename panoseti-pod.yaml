@@ -6,7 +6,7 @@ spec:
   hostname: headnode
   containers:
     - name: ubuntu
-      image: ghcr.io/liuweiseu/ubuntu-x86:24.04-v1.1
+      image: ghcr.io/liuweiseu/ubuntu-aarch64:24.04-v1.2
       command: [ "sleep", "infinity" ]
       workingDir: /home/panoseti
       securityContext:
@@ -17,8 +17,9 @@ spec:
       ports:
         - containerPort: 22
           hostPort: 5922
-        - containerPort: 60000
-          hostPort: 60000
+        - containerPort: 60002
+          hostPort: 60002
+          protocol: UDP
       volumeMounts:
         - mountPath: /home/panoseti/panoseti
           name: panoseti-control
@@ -71,7 +72,7 @@ spec:
         type: Directory
     - name: panoseti-control
       hostPath:
-        path: /home/wei/Projects/panoseti-pod/panoseti-control
+        path: /home/wei/Projects/panoseti-control
         type: Directory
     - name: panoseti-grafana-dashboards
       hostPath:
