@@ -1,5 +1,5 @@
 #! /usr/bin/env python3
-import os
+import os, sys
 import yaml
 from argparse import ArgumentParser
 
@@ -34,9 +34,11 @@ if __name__ == "__main__":
     elif opts.sw_path != None:
         sw_path = opts.sw_path
     else:
-        print('Please specify the panoseti software path with `--sw-path`,')
-        print('or use `--clone-sw` to clone the repo automatically.')
-        return
+        print('*************************************************************')
+        print('Please specify the panoseti software path with `--sw-path`.')
+        print('Or please use `--clone-sw` to clone the repo automatically.')
+        print('*************************************************************')
+        sys.exit()
     if opts.arch == 'x86':
         image = X86_IMAGE
     elif opts.arch == 'aarch64':
