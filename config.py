@@ -58,3 +58,4 @@ if __name__ == "__main__":
     # dump yaml file
     with open('panoseti-pod.yaml', 'w', encoding='utf-8') as f:
         yaml.dump(template_config, f, allow_unicode=True)
+    print('panoseti-pod.yaml generated successfully!')
