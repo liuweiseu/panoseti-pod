@@ -17,8 +17,8 @@ spec:
       ports:
         - containerPort: 22
           hostPort: 5922
-        - containerPort: 60000
-          hostPort: 60000
+        - containerPort: 60002
+          hostPort: 60002
       volumeMounts:
         - mountPath: /home/panoseti/panoseti
           name: panoseti-control

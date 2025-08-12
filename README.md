@@ -28,19 +28,24 @@ This is the container for the PanoSETI control software.
     ```
     pip install -r requirements.txt
     ```
-6. run `config.py` to generate the `panoseti-pod.yaml`
+6. create account for the data storage website
+    ```
+    cd website/apache2/web/ 
+    python3 add_account.py
+    ```
+7. run `config.py` to generate the `panoseti-pod.yaml`
     ```
     python3 config.py --clone_sw
     ```
-7. create pod
+8. create pod
     ```
     ./setup.sh
     ```
-8. use the terminal
+9.  use the terminal
     ```
     ./terminal.sh
     ```
-9.  modify the config file in the `panoseti-control` directory
+10. modify the config file in the `panoseti-control` directory
     ```
     cd panoseti-control/control/configs
     cp container/daq_config.json daq_config.json
