@@ -49,7 +49,7 @@ if __name__ == "__main__":
         template_config = yaml.safe_load(f)
     
     # populate the config
-    template_config['spec']['containers'][1]['image'] = image
+    template_config['spec']['containers'][0]['image'] = image
     # the first vol is panoseti-control, and it could be in somewhere else.
     template_config['spec']['volumes'][0]['hostPath']['path'] = '%s/panoseti'%sw_path
     for vol in template_config['spec']['volumes'][1:]:

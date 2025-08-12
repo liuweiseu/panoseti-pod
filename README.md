@@ -23,6 +23,9 @@ This is the container for the PanoSETI control software.
 4. clone the `panoseti-pod` repo and the `panoseti` repo
     ```
     git clone -b podman https://github.com/panoseti/panoseti-pod.git
+    cd panoseti-pod
+    git submodule init
+    git submodule update
     ```
 5. run `config.py` to generate the `panoseti-pod.yaml`
     ```
