@@ -19,6 +19,7 @@ spec:
           hostPort: 5922
         - containerPort: 60002
           hostPort: 60002
+          protocol: UDP
       volumeMounts:
         - mountPath: /home/panoseti/panoseti
           name: panoseti-control
