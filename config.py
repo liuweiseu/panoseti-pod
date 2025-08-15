@@ -3,7 +3,7 @@ import os, sys
 import yaml
 from argparse import ArgumentParser
 
-X86_IMAGE = 'ghcr.io/liuweiseu/ubuntu-x86:24.04-v1.1'
+X86_IMAGE = 'ghcr.io/liuweiseu/ubuntu-x86:24.04-v1.2'
 AARCH64_IMAGE = 'ghcr.io/liuweiseu/ubuntu-aarch64:24.04-v1.2'
 
 if __name__ == "__main__":
