@@ -3,7 +3,7 @@ This is the container for the PanoSETI control software.
 
 ## Set up
 1. install [miniconda](https://www.anaconda.com/docs/getting-started/miniconda/install#linux-terminal-installer)(optional, but recommended) 
-2. install [HASHPIPE](https://casper.astro.berkeley.edu/wiki/HASHPIPE) on the host computer
+2. install HASHPIPE on the host computer
     ```
     git clone https://github.com/david-macmahon/hashpipe.git
     ```
@@ -13,6 +13,7 @@ This is the container for the PanoSETI control software.
     ```
     git checkout 6b16dc80354d44a12a25faa8e6797aad3a54ceaf
     ```
+    Then check the HASHPIPE for the instructions about how to install [HASHPIPE](https://casper.astro.berkeley.edu/wiki/HASHPIPE).
 3. install [podman](https://podman.io)
     ```
     sudo apt install podman
