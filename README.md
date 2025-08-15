@@ -20,7 +20,7 @@ This is the container for the PanoSETI control software.
     ```
 4. clone the `panoseti-pod` repo and the `panoseti` repo
     ```
-    git clone -b podman https://github.com/panoseti/panoseti-pod.git
+    git clone -b podman https://github.com/liuweiseu/panoseti-pod
     cd panoseti-pod
     git submodule init
     git submodule update
