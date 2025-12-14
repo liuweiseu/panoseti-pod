@@ -29,7 +29,7 @@ if __name__ == "__main__":
         if os.path.exists('panoseti'):
             print('The panoseti directory exists.')
         else:
-            cmd = 'git clone -b container --depth=1 https://github.com/panoseti/panoseti.git'
+            cmd = 'git clone -b mount-metadata --depth=1 https://github.com/panoseti/panoseti.git'
             os.system(cmd)
     elif opts.sw_path != None:
         sw_path = opts.sw_path

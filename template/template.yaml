@@ -39,7 +39,7 @@ spec:
       image: docker.io/grafana/grafana:latest
       ports:
         - containerPort: 3000
-          hostPort: 3000
+          hostPort: 3001
       volumeMounts:
         - mountPath: /etc/grafana/provisioning/dashboards
           name: panoseti-grafana-dashboards

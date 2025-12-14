@@ -35,6 +35,7 @@ This is the container for the PanoSETI control software.
     ```
 7. run `config.py` to generate the `panoseti-pod.yaml`
     ```
+    cd -
     python3 config.py --clone_sw
     ```
 8. create pod
