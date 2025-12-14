@@ -31,7 +31,8 @@ spec:
       ports:
         - containerPort: 6379
           hostPort: 6380
-
+      command: ["redis-server", "--bind", "0.0.0.0", "--protected-mode", "no"]
+      
     - name: influxdb
       image: docker.io/library/influxdb:1.8.10
       ports:
