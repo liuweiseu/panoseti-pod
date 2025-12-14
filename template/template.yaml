@@ -28,12 +28,15 @@ spec:
 
     - name: redis
       image: docker.io/library/redis:7.4.1
+      ports:
+        - containerPort: 6379
+          hostPort: 6380
 
     - name: influxdb
       image: docker.io/library/influxdb:1.8.10
       ports:
         - containerPort: 8086
-          hostPort: 8086
+          hostPort: 8087
 
     - name: grafana
       image: docker.io/grafana/grafana:latest
@@ -50,7 +53,7 @@ spec:
       image: docker.io/library/php:7.4-apache
       ports:
         - containerPort: 80
-          hostPort: 8080
+          hostPort: 8081
       volumeMounts:
         - mountPath: /etc/apache2
           name: panoseti-apache2-config
