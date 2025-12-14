@@ -40,8 +40,9 @@ This is the container for the PanoSETI control software.
     ```
 8. create pod
     ```
-    ./setup.sh
+    ./pod.sh --setup
     ```
+    **Note:** Use `./pod.sh --help` to see other options.
 9.  use the terminal
     ```
     ./terminal.sh
